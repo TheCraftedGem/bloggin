@@ -65,4 +65,31 @@ RSpec.describe "User crud for articles" do
       end
     end
   end
+
+  describe "user can edit an article" do
+    describe "they link from the show page" do
+      it "edits a article" do
+        article_1 = Article.create!(title: "Title 1", body: "Body 1")
+        article_2 = Article.create!(title: "Title 2", body: "Body 2")
+
+        visit article_path(article_1)
+        click_on "Edit"
+
+        expect(current_path).to eq(edit_article_path(article_1))
+
+        fill_in "article[title]", with: "Woof"
+        fill_in "article[body]", with: "wakey wakey mr woof"
+        
+
+        click_on "Update Article"
+        
+        article_1.reload
+
+        expect(current_path).to eq(article_path(article_1))
+        
+        expect(article_1.title).to eq("Woof")
+        expect(article_1.body).to eq("wakey wakey mr woof")
+      end
+    end
+  end
 end 
