@@ -27,6 +27,8 @@ gem 'shoulda-matchers'
 gem 'simplecov'
 gem 'faraday'
 gem 'pry-rails'
+gem 'database_cleaner'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
